@@ -74,4 +74,3 @@ Monitor:
 - Load testing
 - Capacity planning
 - Application performance testing
-- 
