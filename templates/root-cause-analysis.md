@@ -1,84 +1,78 @@
-# Slow Database Queries
+# Root Cause Analysis
 
-## Overview
+## Incident Title
 
-Slow database queries occur when a query takes longer than expected to execute, leading to delayed responses and degraded application performance.
+[Short description]
 
----
+## Date
 
-## Customer Symptoms
+[YYYY-MM-DD]
 
-Customers experience slow page loads, delayed API responses, or request timeouts.
+## Severity
 
----
-
-## Possible Causes
-
-- Missing database indexes
-- Inefficient SQL query
-- Large table scans
-- Excessive joins
-- Database resource constraints
-- Lock contention
+[Low / Medium / High / Critical]
 
 ---
 
-## Investigation Steps
+## Customer Impact
 
-1. Identify the slow endpoint.
-2. Identify the SQL query involved.
-3. Measure query execution time.
-4. Review the query execution plan.
-5. Check indexes.
-6. Check database CPU and memory.
-7. Check for locks or blocking queries.
-
-### Example
-
-```sql
-EXPLAIN
-SELECT *
-FROM orders
-WHERE customer_id = 123;
-```
+Describe the impact experienced by customers.
 
 ---
 
-## Resolution
+## Timeline
 
-Possible remediation:
-
-- Add an appropriate index
-- Rewrite the query
-- Reduce unnecessary columns
-- Optimize joins
-- Improve pagination
-- Review database resources
+| Time | Event |
+|------|-------|
+|      |       |
+|      |       |
+|      |       |
 
 ---
 
-## Validation
+## Symptoms
 
-Verify:
-
-- Query execution time
-- API response time
-- Database CPU
-- Customer-facing performance
-
----
-
-## Prevention
-
-- Query performance monitoring
-- Slow query logging
-- Index reviews
-- Database performance testing
+Describe what customers or monitoring systems observed.
 
 ---
 
 ## Root Cause
 
-Document the confirmed cause here.
+Describe the confirmed technical root cause.
 
-**Example:** A frequently executed query was performing a full table scan because the filtering column did not have an appropriate index.
+---
+
+## Contributing Factors
+
+-
+-
+-
+
+---
+
+## Resolution
+
+Describe the remediation.
+
+---
+
+## Validation
+
+Explain how the resolution was verified.
+
+---
+
+## Preventive Actions
+
+- [ ] Monitoring improvement
+- [ ] Alerting improvement
+- [ ] Code change
+- [ ] Infrastructure change
+- [ ] Testing improvement
+- [ ] Documentation update
+
+---
+
+## Lessons Learned
+
+Document what should be done differently in the future.
