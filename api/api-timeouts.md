@@ -1,25 +1,32 @@
-# API Timeout
+# API Timeout Troubleshooting
 
 ## Overview
 
-An API timeout occurs when a request does not complete within the expected time window. This can result in failed requests, degraded performance, or customer-facing errors.
+API timeouts occur when a request does not receive a response within the configured timeout period. API timeouts can affect customer-facing applications, integrations, mobile applications, and internal services.
 
 ---
 
 ## Customer Symptoms
 
-Customers report that an API request is slow or fails with a timeout.
+Customers may experience:
+
+- Slow page responses
+- Request timeout errors
+- HTTP 504 Gateway Timeout
+- Failed transactions
+- Intermittent API failures
 
 ---
 
-## Possible Causes
+## Common Causes
 
-- Slow backend processing
-- Database latency
+- Slow database queries
+- Slow downstream services
 - Third-party API latency
-- Network problems
+- Application resource exhaustion
+- Network connectivity problems
 - Incorrect timeout configuration
-- Resource exhaustion
+- Long-running synchronous operations
 
 ---
 
@@ -29,27 +36,63 @@ Customers report that an API request is slow or fails with a timeout.
 Customer
    |
    v
-API Gateway
+API Gateway / Load Balancer
    |
    v
 Application
    |
-   +----> Database
+   +------> Database
    |
-   +----> External API
+   +------> External API
+   |
+   v
+Response
 ```
 
 ---
 
 ## Investigation Steps
 
-1. Identify the affected endpoint.
-2. Check API Gateway or load balancer metrics.
-3. Check application logs.
-4. Measure backend response time.
-5. Check database performance.
-6. Check external dependencies.
-7. Compare current latency with normal baseline.
+### 1. Identify the Endpoint
+
+Determine:
+
+- API endpoint
+- HTTP method
+- Request timestamp
+- Customer or request identifier
+- Frequency of failures
+
+### 2. Check API Metrics
+
+Review:
+
+- Request count
+- Latency
+- Error rate
+- HTTP 4xx responses
+- HTTP 5xx responses
+- HTTP 504 responses
+
+### 3. Check Application Logs
+
+Search for:
+
+- Timeout exceptions
+- Database latency
+- External API latency
+- Connection errors
+- Resource exhaustion
+
+### 4. Identify the Slow Dependency
+
+Determine whether the delay is caused by:
+
+- Database
+- Internal service
+- External API
+- Network
+- Application processing
 
 ---
 
@@ -57,27 +100,33 @@ Application
 
 Possible solutions:
 
-- Optimize backend processing
-- Optimize database queries
-- Improve connection handling
-- Configure appropriate timeouts
-- Add retries where appropriate
-- Improve external dependency handling
+- Optimize slow database queries
+- Reduce synchronous processing
+- Improve downstream service performance
+- Configure appropriate timeout values
+- Introduce asynchronous processing
+- Add caching where appropriate
+- Improve connection management
+
+---
+
+## Validation
+
+After remediation:
+
+- Reproduce the request
+- Verify API latency
+- Check error rate
+- Review application logs
+- Confirm customer functionality
 
 ---
 
 ## Prevention
 
 - API latency monitoring
-- Error-rate alerts
+- CloudWatch alarms
 - Distributed tracing
 - Performance testing
 - Dependency monitoring
-
----
-
-## Root Cause
-
-Document the confirmed root cause here.
-
-> **Note:** Do not classify the timeout itself as the root cause unless the timeout configuration was actually the underlying problem.
+- Appropriate timeout standards
