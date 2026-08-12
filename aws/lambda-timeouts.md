@@ -51,7 +51,8 @@ AWS Lambda
        v
 CloudWatch Logs
 
-Investigation Steps
+---
+## Investigation Steps
 1. Check CloudWatch Logs
 
 Look for:
@@ -142,3 +143,4 @@ Root Cause
 Document the confirmed root cause here.
 
 Do not classify the Lambda timeout itself as the root cause unless the timeout configuration was actually the underlying problem.
+
